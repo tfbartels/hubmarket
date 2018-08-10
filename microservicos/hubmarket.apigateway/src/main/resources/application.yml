@@ -1,0 +1,13 @@
+server:
+ port: 8080 
+  
+zuul:
+ routes:  
+  produto:
+   path: http://localhost:8090
+   sensitiveHeaders:
+   serviceId: produto-server
+
+ribbon:
+  eureka:
+   enabled: false
