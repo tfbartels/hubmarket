@@ -1,13 +1,13 @@
 server:
  port: 8080 
+
+spring:
+ application:
+  name: apigateway
   
 zuul:
  routes:  
   produto:
    path: http://localhost:8090
-   sensitiveHeaders:
-   serviceId: produto-server
+   serviceId: produto
 
-ribbon:
-  eureka:
-   enabled: false
