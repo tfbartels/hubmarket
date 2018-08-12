@@ -6,8 +6,9 @@ spring:
   name: apigateway
   
 zuul:
+ prefix: /api
  routes:  
   produto:
-   path: http://localhost:8090
+   path: /produto/**
    serviceId: produto
 
