@@ -1,4 +1,4 @@
-package br.com.hubmarket.usuario.config;
+/*package br.com.hubmarket.usuario.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfiguration extends   ResourceServerConfigurerAdapter {
+public class ResourceServerConfiguration2 extends   ResourceServerConfigurerAdapter {
 	
 	@Value("${security.oauth2.client.resource-ids}")
     private String RESOURCE_ID;
@@ -36,4 +36,4 @@ public class ResourceServerConfiguration extends   ResourceServerConfigurerAdapt
                 .antMatchers(HttpMethod.PATCH, "/**").access("#oauth2.hasScope('write')")
                 .antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write')");
     }
-}
+}*/

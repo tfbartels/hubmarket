@@ -1,5 +1,5 @@
 server:
-  port: 8091
+  port: 8095
  
 spring:
   application:
@@ -17,11 +17,16 @@ spring:
     show-sql: true  
 
 security:
-  oauth2:
-    client:
-      access-token-validity-seconds: 1800
-      authorized-grant-types: password,refresh_token
-      client-id: web
-      client-secret: 12345
-      resource-ids: resources
-      scope: read,write
+  basic:
+    enable: false
+    
+#  oauth2:
+#    client:
+#      access-token-validity-seconds: 1800
+#      authorized-grant-types: password,refresh_token
+#      client-id: web
+#      client-secret: 12345
+#      resource-ids: resources
+#      scope: read,write
+      
+      

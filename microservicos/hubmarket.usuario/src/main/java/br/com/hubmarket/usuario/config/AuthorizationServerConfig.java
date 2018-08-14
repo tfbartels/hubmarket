@@ -1,10 +1,6 @@
 package br.com.hubmarket.usuario.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,61 +10,44 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    
-
-    @Value("${security.oauth2.client.client-id}")
-    private String clientId;
-
-    @Value("${security.oauth2.client.authorized-grant-types}")
-    private String[] authorizedGrantTypes;
-
-    @Value("${security.oauth2.client.resource-ids}")
-    private String resourceIds;
-
-    @Value("${security.oauth2.client.scope}")
-    private String[] scopes;
-
-    @Value("${security.oauth2.client.client-secret}")
-    private String secret;
-
-    @Value("${security.oauth2.client.access-token-validity-seconds}")
-    private Integer accessTokenValiditySeconds;
-
-    @Autowired
-    DataSource dataSource;
-
-    @Autowired    
-    @Qualifier("authenticationManagerBean")
+	@Autowired
     private AuthenticationManager authenticationManager;
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
+    }
+
+
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients
+                .inMemory()
+                .withClient("clientid")
+                .secret("secret")
+                .authorizedGrantTypes("password","authorization_code", "refresh_token")
+                .scopes("read")
+                .autoApprove(true);
+    }
+
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        endpoints.authenticationManager(authenticationManager);
+    }
+    
     @Bean
-    public JdbcTokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
-/*
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-            throws Exception {
-        endpoints.authenticationManager(this.authenticationManager).tokenStore(tokenStore());
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
-    @Override
-    public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-    	configurer.jdbc(dataSource)
-                .withClient(clientId)
-                .authorizedGrantTypes(authorizedGrantTypes)
-    //            .authorities(Authorities.names())
-                .resourceIds(resourceIds)
-                .scopes(scopes)
-                .secret(secret)
-                .accessTokenValiditySeconds(accessTokenValiditySeconds);
-    }
-*/
-
+    
 }
