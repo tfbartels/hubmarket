@@ -1,6 +1,28 @@
 server:
- port: 8091
+  port: 8091
  
 spring:
- application:
-  name: usuario
+  application:
+    name: usuario
+ 
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: ''   
+    url: jdbc:mysql://localhost/hubmarket-usuario?verifyServerCertificate=false&useSSL=false&requireSSL=false  
+ 
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true  
+
+security:
+  oauth2:
+    client:
+      access-token-validity-seconds: 1800
+      authorized-grant-types: password,refresh_token
+      client-id: admin
+      client-secret: 12345
+      resource-ids: resources
+      scope: read,write
