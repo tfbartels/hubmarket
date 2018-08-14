@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 //import com.coderef.delivery.service.UserDetailsService;
@@ -19,11 +20,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   //  @Autowired
   //  private UserDetailsService userDetailsService;
 
+	private static PasswordEncoder encoder;
+	
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        if (encoder == null) {
+            encoder = new BCryptPasswordEncoder();
+        }
+        return encoder;
+    }
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	auth.inMemoryAuthentication().withUser("usr").password("123").roles("USER");
   //      auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
@@ -37,4 +49,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/oauth/register");
     }
+    
 }

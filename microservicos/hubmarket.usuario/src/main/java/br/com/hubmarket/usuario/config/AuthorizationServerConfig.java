@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private static PasswordEncoder encoder;
+    
 
     @Value("${security.oauth2.client.client-id}")
     private String clientId;
@@ -51,7 +51,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public JdbcTokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
-
+/*
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints)
             throws Exception {
@@ -69,13 +69,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(secret)
                 .accessTokenValiditySeconds(accessTokenValiditySeconds);
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        if (encoder == null) {
-            encoder = new BCryptPasswordEncoder();
-        }
-        return encoder;
-    }
+*/
 
 }
