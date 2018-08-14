@@ -11,4 +11,6 @@ zuul:
   produto:
    path: /produto/**
    serviceId: produto
-
+  usuario:
+   path: /usuario/**
+   serviceId: usuario
