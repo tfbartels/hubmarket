@@ -1,4 +1,8 @@
+
 /*package br.com.hubmarket.usuario.config;
+=======
+package br.com.hubmarket.usuario.config;
+>>>>>>> branch 'master' of https://github.com/tfbartels/hubmarket.git
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -49,5 +53,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new BCryptPasswordEncoder();
     }
 
-    
 }*/

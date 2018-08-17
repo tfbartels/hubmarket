@@ -16,6 +16,7 @@ spring:
       ddl-auto: none
     show-sql: true  
 
+<<<<<<< HEAD
 security:   
   oauth2:
     client:
@@ -25,5 +26,19 @@ security:
       client-secret: 12345
 #      resource-ids: resources
       scope: password
+=======
+security:
+  basic:
+    enable: false
+    
+#  oauth2:
+#    client:
+#      access-token-validity-seconds: 1800
+#      authorized-grant-types: password,refresh_token
+#      client-id: web
+#      client-secret: 12345
+#      resource-ids: resources
+#      scope: read,write
+>>>>>>> branch 'master' of https://github.com/tfbartels/hubmarket.git
       
       
