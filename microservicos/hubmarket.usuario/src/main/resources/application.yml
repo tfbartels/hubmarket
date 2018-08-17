@@ -1,13 +1,13 @@
 server:
- port: 8098
+ port: 8090
  
 spring:
   application:
-    name: produto
+    name: usuario
     
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/hubmarket-produto
+    url: jdbc:postgresql://localhost:5432/hubmarket-usuario
     username: postgres
     password: admin 
     
