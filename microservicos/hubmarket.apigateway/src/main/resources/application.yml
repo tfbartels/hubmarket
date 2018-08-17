@@ -11,12 +11,13 @@ zuul:
   produto:
    path: /produto/**
    serviceId: produto
-  usuario:
-   path: /usuario/**
-   serviceId: usuario
 
 security:
   oauth2:     
     client:
       accessTokenUri: http://localhost:8095/oauth/token
       userAuthorizationUri: http://localhost:8095/oauth/authorize
+      clientId: web
+      clientSecret: 12345
+    resource:
+      userInfoUri: http://localhost:8095/auth/
