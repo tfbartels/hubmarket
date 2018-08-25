@@ -51,5 +51,7 @@ public class CategoriaEntity {
 		this.categoriaSuperior = categoriaSuperior;
 	}	
 
-	
+	public CategoriaDTO transformaEmDTO() {
+	    return new CategoriaDTO(this.getId(), this.getDescricao());
+	}
 }

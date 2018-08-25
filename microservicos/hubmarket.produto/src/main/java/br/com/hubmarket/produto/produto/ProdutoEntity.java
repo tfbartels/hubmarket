@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import br.com.hubmarket.produto.categoria.CategoriaDTO;
 import br.com.hubmarket.produto.categoria.CategoriaEntity;
 
 @Entity
@@ -31,6 +32,10 @@ public class ProdutoEntity {
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private CategoriaEntity categoria;
+	
+	@Column(name = "id_fornecedor", length = 60, nullable = true)
+	private Long idFornecedor;
+	
 	
 	public Long getId() {
 		return id;
@@ -62,8 +67,20 @@ public class ProdutoEntity {
 
 	public void setCategoria(CategoriaEntity categoria) {
 		this.categoria = categoria;
+	}
+
+	public Long getIdFornecedor() {
+		return idFornecedor;
+	}
+
+	public void setIdFornecedor(Long idFornecedor) {
+		this.idFornecedor = idFornecedor;
 	}	
 	
+	
+	public ProdutoDTO transformaEmDTO() {
+	    return new ProdutoDTO(this.getId(), this.getCodigo(), this.getDescricao(), this.getCategoria().transformaEmDTO());
+	}
 	
 
 	
