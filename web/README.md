@@ -1,2 +1,0 @@
-﻿# Hub Market - Web 
-Frontend
