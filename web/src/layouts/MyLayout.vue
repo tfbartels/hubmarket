@@ -16,8 +16,18 @@
         </q-btn>
 
         <q-toolbar-title>
-          <div class='logo'>
-           <img alt="Hub Market" src="statics/hubmarket-logo.png">
+          <div class="row justify-between items-center" >
+            <div class="col-12 col-md">
+              <img alt="Hub Market" src="statics/hubmarket-logo.png">
+            </div>
+            <div class="col-12 col-md">
+              <q-search
+               v-model="searchModel"
+               placeholder="O que você procura?"
+               icon="search"
+              />
+            </div>
+            <div class="col-12 col-md">1</div>
           </div>
         </q-toolbar-title>
       </q-toolbar>
