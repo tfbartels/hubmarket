@@ -1,6 +1,18 @@
 <template>
   <q-page padding>
-    Produto {{id}}
+    <div class='content'>
+      <div class="row" >
+        <div class="col-12 col-md">
+        1
+        </div>
+        <div class="col-12 col-md">
+        2
+        </div>
+      </div>
+      <div class="row" >
+      Produto {{id}}
+      </div>
+    </div>
   </q-page>
 </template>
 

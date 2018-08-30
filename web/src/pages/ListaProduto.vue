@@ -78,11 +78,6 @@ export default {
 </script>
 
 <style scoped>
- .content{
-  padding-left: 10%;
-  padding-right: 10%;
- }
-
  .link{
   text-decoration: none;
  }

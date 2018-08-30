@@ -73,6 +73,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+ .content{
+  padding-left: 10%;
+  padding-right: 10%;
+ }
 </style>
