@@ -3,7 +3,7 @@
     <div class='content'>
       <div class="row" >
         <div class="col-12 col-md">
-        1
+        12
         </div>
         <div class="col-12 col-md">
         2
