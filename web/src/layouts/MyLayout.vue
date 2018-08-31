@@ -16,7 +16,7 @@
         </q-btn>
 
         <q-toolbar-title>
-          <div class="row justify-between items-center" >
+          <div class="row items-center" >
             <div class="col-12 col-md">
               <img alt="Hub Market" src="statics/hubmarket-logo.png">
             </div>
@@ -27,12 +27,19 @@
                icon="search"
               />
             </div>
-            <div class="col-12 col-md"></div>
+            <div class="col-12 col-md"/>
           </div>
         </q-toolbar-title>
+        <q-btn flat round >
+          <q-icon name="shopping_cart" size='25px'/>
+        </q-btn>
+        <q-btn flat round >
+          <q-icon name="person" size='25px' />
+        </q-btn>
       </q-toolbar>
     </q-layout-header>
 
+    <!-- Menu -->
     <q-layout-drawer
       v-model="leftDrawerOpen"
       :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
@@ -40,6 +47,7 @@
       <cpMenu />
     </q-layout-drawer>
 
+    <!-- Main -->
     <q-page-container>
       <router-view />
     </q-page-container>

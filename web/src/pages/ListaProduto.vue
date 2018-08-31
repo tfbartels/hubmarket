@@ -1,6 +1,8 @@
 <template>
-  <q-page padding>
+  <q-page>
     <div class='content'>
+      <h5>{{categoria.descricao}}</h5>
+      {{this.$route.params.descricao}}
       <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
         <router-link class='link' :to="{ name:'produto', params: { idProduto: produto.id }}">
           <q-card-media class="media">
@@ -22,6 +24,10 @@ export default {
   name: 'ListaProduto',
   data () {
     return {
+      categoria: {
+        id: 0,
+        descricao: ''
+      },
       listaProduto: [
         {
           id: 1,
@@ -72,6 +78,12 @@ export default {
           preco: 'R$1000,00'
         }
       ]
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.categoria.id = from.params.id
+      this.categoria.descricao = from.params.descricao
     }
   }
 }
