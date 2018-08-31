@@ -27,7 +27,7 @@
                icon="search"
               />
             </div>
-            <div class="col-12 col-md">1</div>
+            <div class="col-12 col-md"></div>
           </div>
         </q-toolbar-title>
       </q-toolbar>
