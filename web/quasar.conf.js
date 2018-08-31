@@ -51,18 +51,19 @@ module.exports = function (ctx) {
         'QCarousel',
         'QCarouselSlide',
         'QCarouselControl',
+        'QCollapsible',        
         'QField',
         'QIcon',
-        'QLayout',
-        'QLayoutHeader',
-        'QLayoutDrawer',
-        'QList',
-        'QListHeader',
         'QItem',
         'QItemMain',
         'QItemSeparator',
         'QItemSide',
         'QItemTile',
+        'QLayout',
+        'QLayoutHeader',
+        'QLayoutDrawer',
+        'QList',
+        'QListHeader',
         'QOptionGroup',
         'QPageContainer',
         'QPage',
@@ -70,7 +71,7 @@ module.exports = function (ctx) {
         'QRating',
         'QSearch',
         'QToolbar',
-        'QToolbarTitle'                
+        'QToolbarTitle'                        
       ],
       directives: [
         'Ripple'

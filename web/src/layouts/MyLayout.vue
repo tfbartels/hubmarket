@@ -37,18 +37,7 @@
       v-model="leftDrawerOpen"
       :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
     >
-      <q-list
-        no-border
-        link
-        inset-delimiter
-      >
-        <q-list-header>Essential Links</q-list-header>
-        <q-item @click.native="openURL('http://quasar-framework.org')">
-          <q-item-side icon="school" />
-          <q-item-main label="Docs"  />
-        </q-item>
-
-      </q-list>
+      <cpMenu />
     </q-layout-drawer>
 
     <q-page-container>
@@ -59,9 +48,11 @@
 
 <script>
 import { openURL } from 'quasar'
+import cpMenu from 'components/Menu'
 
 export default {
   name: 'MyLayout',
+  components: { cpMenu },
   data () {
     return {
       leftDrawerOpen: false
@@ -74,8 +65,12 @@ export default {
 </script>
 
 <style>
- .content{
+.content{
   padding-left: 10%;
   padding-right: 10%;
- }
+}
+
+.link{
+  text-decoration: none;
+}
 </style>

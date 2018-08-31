@@ -78,10 +78,6 @@ export default {
 </script>
 
 <style scoped>
- .link{
-  text-decoration: none;
- }
-
  .media{
   padding: 20px;
  }
