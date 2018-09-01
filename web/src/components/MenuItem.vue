@@ -3,7 +3,7 @@
     <q-collapsible  v-if="item.itensMenu" indent :label="item.descricao">
       <MenuItem  v-for="itemMenu in item.itensMenu" :item="itemMenu" :key="itemMenu.index" />
     </q-collapsible>
-    <router-link class='link' :to="{ name:'listaproduto', params: { id: item.id, descricao: item.descricao }}" replace  v-else >
+    <router-link class='link' :to="{ name:'listaproduto', params: { id: item.id}}" replace   v-else >
     <q-item link >
       <q-item-main :label="item.descricao">
       </q-item-main>
