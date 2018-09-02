@@ -1,7 +1,6 @@
 <template>
   <q-page>
     <div class='content'>
-{{this.$route.params.id }}
       {{this.categoria.id }}
       <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
         <router-link class='link' :to="{ name:'produto', params: { idProduto: produto.id }}">
@@ -79,6 +78,9 @@ export default {
         }
       ]
     }
+  },
+  created: function () {
+    this.categoria.id = this.$route.params.id
   },
   watch: {
     '$route' (to) {
