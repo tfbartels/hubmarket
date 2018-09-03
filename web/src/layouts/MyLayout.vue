@@ -81,4 +81,12 @@ export default {
 .link{
   text-decoration: none;
 }
+
+.titulo{
+  margin: 2em 0 .8em;
+  padding-bottom: .4em;
+  border-bottom: 1px solid #ddd;
+  color: #003163;
+}
+
 </style>

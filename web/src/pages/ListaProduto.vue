@@ -1,9 +1,9 @@
 <template>
   <q-page>
     <div class='content'>
-      {{this.categoria.id }}
+      <h6 class='titulo'>{{this.categoria.id }}</h6>
       <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
-        <router-link class='link' :to="{ name:'produto', params: { idProduto: produto.id }}">
+        <router-link class='link' :to="{ name:'produto', params: { id: produto.id }}">
           <q-card-media class="media">
             <img src="statics/telefone.jpg">
           </q-card-media>
@@ -98,5 +98,4 @@ export default {
  .q-card{
   margin: 10px;
  }
-
 </style>
