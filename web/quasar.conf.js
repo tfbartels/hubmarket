@@ -70,6 +70,7 @@ module.exports = function (ctx) {
         'QRadio',
         'QRating',
         'QSearch',
+        'QSelect',
         'QToolbar',
         'QToolbarTitle'                        
       ],

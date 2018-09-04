@@ -1,6 +1,5 @@
 <template>
-  <q-page>
-    <div class='content'>
+  <q-page class='content'>
       <h6 class='titulo'>{{this.categoria.id }}</h6>
       <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
         <router-link class='link' :to="{ name:'produto', params: { id: produto.id }}">
@@ -14,7 +13,6 @@
           </q-card-main>
         </router-link>
       </q-card>
-    </div>
   </q-page>
 </template>
 

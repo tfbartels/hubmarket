@@ -18,7 +18,9 @@
         <q-toolbar-title>
           <div class="row items-center" >
             <div class="col-12 col-md">
-              <img alt="Hub Market" src="statics/hubmarket-logo.png">
+              <router-link class='link' :to="{ name:'index'}">
+                <img alt="Hub Market" src="statics/hubmarket-logo.png">
+              </router-link >
             </div>
             <div class="col-12 col-md">
               <q-search
@@ -31,7 +33,9 @@
           </div>
         </q-toolbar-title>
         <q-btn flat round >
-          <q-icon name="shopping_cart" size='25px'/>
+          <router-link class='link' :to="{ name:'carrinho'}">
+            <q-icon name="shopping_cart" size='25px'/>
+          </router-link >
         </q-btn>
         <q-btn flat round >
           <q-icon name="person" size='25px' />
