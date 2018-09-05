@@ -54,6 +54,7 @@ module.exports = function (ctx) {
         'QCollapsible',        
         'QField',
         'QIcon',
+        'QInput',
         'QItem',
         'QItemMain',
         'QItemSeparator',
