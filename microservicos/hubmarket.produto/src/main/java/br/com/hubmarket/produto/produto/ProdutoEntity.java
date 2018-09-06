@@ -79,7 +79,7 @@ public class ProdutoEntity {
 	
 	
 	public ProdutoDTO transformaEmDTO() {
-	    return new ProdutoDTO(this.getId(), this.getCodigo(), this.getDescricao(), this.getCategoria().transformaEmDTO());
+	    return new ProdutoDTO(this.getId(), this.getCodigo(), this.getDescricao(), null);
 	}
 	
 

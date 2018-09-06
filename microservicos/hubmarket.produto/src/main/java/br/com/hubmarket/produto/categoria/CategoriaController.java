@@ -1,11 +1,11 @@
 package br.com.hubmarket.produto.categoria;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -14,10 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoriaController {
 
 	@Autowired
-	protected JpaRepository<CategoriaEntity, Long> categoriaRepository;
+	protected CategoriaRepository categoriaRepository;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<CategoriaEntity> listar() {
-		return this.categoriaRepository.findAll();
+	@GetMapping
+	public List<CategoriaDTO> listar() {
+		List<CategoriaDTO> listaCategoriaDTO = new ArrayList<CategoriaDTO>(); 
+		List<CategoriaEntity> listaCategoriaEntity = this.categoriaRepository.findByListaCategoriasInferioresIsNotEmpty();
+		
+		for (CategoriaEntity categoriaEntity : listaCategoriaEntity) {
+			CategoriaDTO categoriaDTO = new CategoriaDTO(categoriaEntity.getId(), categoriaEntity.getDescricao());
+			
+			listaCategoriaDTO.add(categoriaDTO);
+		}
+		
+		return listaCategoriaDTO;	
 	}
 }

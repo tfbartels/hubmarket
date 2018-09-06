@@ -16,7 +16,7 @@ import br.com.hubmarket.produto.fornecedor.FornecedorService;
 public class ProdutoController {
 
 	@Autowired
-	protected JpaRepository<ProdutoEntity, Long> produtoRepository;
+	protected ProdutoRepository produtoRepository;
 	
 	@Autowired
 	private FornecedorService fornecedorService; 

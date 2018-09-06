@@ -1,16 +1,17 @@
 package br.com.hubmarket.produto.categoria;
 
+import java.util.List;
+
 public class CategoriaDTO {
 	
 
 	private Long id;
 	private String descricao;
-	private CategoriaDTO categoriaSuperior;
+	private List<CategoriaDTO> listaCategoriasInferiores;
 	
-	public CategoriaDTO(Long id, String descricao) {
-		super();
+	public CategoriaDTO(Long id, String descricao) {		
 		this.id = id;
-		this.descricao = descricao;
+		this.descricao = descricao;		
 	}
 
 	public Long getId() {
@@ -29,13 +30,15 @@ public class CategoriaDTO {
 		this.descricao = descricao;
 	}
 
-	public CategoriaDTO getCategoriaSuperior() {
-		return categoriaSuperior;
+	public List<CategoriaDTO> getListaCategoriasInferiores() {
+		return listaCategoriasInferiores;
 	}
 
-	public void setCategoriaSuperior(CategoriaDTO categoriaSuperior) {
-		this.categoriaSuperior = categoriaSuperior;
-	}	
+	public void setListaCategoriasInferiores(List<CategoriaDTO> listaCategoriasInferiores) {
+		this.listaCategoriasInferiores = listaCategoriasInferiores;
+	}
+
+	
 
 
 }
