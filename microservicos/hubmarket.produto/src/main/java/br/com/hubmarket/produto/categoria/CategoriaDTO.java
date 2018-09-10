@@ -9,9 +9,10 @@ public class CategoriaDTO {
 	private String descricao;
 	private List<CategoriaDTO> listaCategoriasInferiores;
 	
+
 	public CategoriaDTO(Long id, String descricao) {		
 		this.id = id;
-		this.descricao = descricao;		
+		this.descricao = descricao;
 	}
 
 	public Long getId() {

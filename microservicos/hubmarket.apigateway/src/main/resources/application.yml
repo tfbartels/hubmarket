@@ -6,7 +6,7 @@ server:
  port: 8081 
   
 zuul:
- prefix: /api
+ prefix: /api/v1
  routes:  
   auth:
    path: /auth/**

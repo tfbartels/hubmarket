@@ -22,6 +22,8 @@ spring:
     show-sql: true  
     generate-ddl: true
 
+cors:
+  allowed-origins: http://localhost:8080 
   
 #  jackson:
 #    serialization:
