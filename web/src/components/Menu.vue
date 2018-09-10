@@ -7,51 +7,24 @@
 
 <script>
 import cpMenuItem from 'components/MenuItem'
-
+import axios from 'axios'
 export default {
   name: 'Menu',
   components: { cpMenuItem },
   data () {
     return {
-      itensMenu:
-      [
-        {
-          id: 1,
-          descricao: 'Celulares',
-          itensMenu: [
-            {
-              id: 2,
-              descricao: 'Motorola'
-            },
-            {
-              id: 3,
-              descricao: 'LG'
-            },
-            {
-              id: 4,
-              descricao: 'Samsung'
-            }
-          ]
-        },
-        {
-          id: 5,
-          descricao: 'TVs',
-          itensMenu: [
-            {
-              id: 6,
-              descricao: 'LG'
-            },
-            {
-              id: 7,
-              descricao: 'Samsung'
-            },
-            {
-              id: 8,
-              descricao: 'Philco'
-            }
-          ]
-        }
-      ]
+      itensMenu: []
+    }
+  },
+  mounted () {
+    this.loadData()
+  },
+  methods: {
+    loadData () {
+      axios
+        .get('http://localhost:8081/api/v1/produto/categoria')
+        .then(response => (this.itensMenu = response.data))
+        .catch(error => console.log(error))
     }
   }
 }

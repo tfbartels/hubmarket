@@ -1,7 +1,7 @@
 <template>
   <div>
-    <q-collapsible  v-if="item.itensMenu" indent :label="item.descricao">
-      <MenuItem  v-for="itemMenu in item.itensMenu" :item="itemMenu" :key="itemMenu.index" />
+    <q-collapsible  v-if="item.listaCategoriasInferiores" indent :label="item.descricao">
+      <MenuItem  v-for="itemMenu in item.listaCategoriasInferiores" :item="itemMenu" :key="itemMenu.index" />
     </q-collapsible>
     <router-link class='link' :to="{ name:'listaproduto', params: { id: item.id}}" replace   v-else >
     <q-item link >
