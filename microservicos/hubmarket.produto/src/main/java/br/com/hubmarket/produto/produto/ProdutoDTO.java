@@ -1,6 +1,6 @@
 package br.com.hubmarket.produto.produto;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 import br.com.hubmarket.produto.categoria.CategoriaDTO;
 import br.com.hubmarket.produto.fornecedor.FornecedorDTO;
@@ -13,14 +13,18 @@ public class ProdutoDTO {
 	private String descricao;
 	private CategoriaDTO categoria;
 	private FornecedorDTO fornecedor;
+	private Integer classificacao;
+	private BigDecimal menorPreco;
+		
 	
 	
-	
-	public ProdutoDTO(Long id, String codigo, String descricao, CategoriaDTO categoria) {
+	public ProdutoDTO(Long id, String codigo, String descricao, Integer classificacao, BigDecimal menorPreco) {
+		super();
 		this.id = id;
 		this.codigo = codigo;
 		this.descricao = descricao;
-		this.categoria = categoria;
+		this.classificacao = classificacao;
+		this.menorPreco = menorPreco;
 	}
 
 	public Long getId() {
@@ -64,14 +68,20 @@ public class ProdutoDTO {
 		this.fornecedor = fornecedor;
 	}
 
-	
+	public Integer getClassificacao() {
+		return classificacao;
+	}
 
+	public void setClassificacao(Integer classificacao) {
+		this.classificacao = classificacao;
+	}
 
-	
-	
+	public BigDecimal getMenorPreco() {
+		return menorPreco;
+	}
 
+	public void setMenorPreco(BigDecimal menorPreco) {
+		this.menorPreco = menorPreco;
+	}
 
-	
-
-	
 }

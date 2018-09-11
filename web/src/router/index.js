@@ -5,6 +5,18 @@ import routes from './routes'
 
 Vue.use(VueRouter)
 
+Vue.filter('toCurrency', function (value) {
+  if (typeof value !== 'number') {
+    return value
+  }
+  var formatter = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  })
+  return formatter.format(value)
+})
+
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation

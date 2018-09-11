@@ -1,5 +1,7 @@
 package br.com.hubmarket.produto.produto;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import br.com.hubmarket.produto.categoria.CategoriaDTO;
 import br.com.hubmarket.produto.categoria.CategoriaEntity;
 
 @Entity
@@ -20,6 +21,9 @@ public class ProdutoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(name="imagem")
+	private byte[] imagem;
 	
 	@NotNull
 	@Column(name = "codigo", length = 120, nullable = false)
@@ -36,6 +40,16 @@ public class ProdutoEntity {
 	@Column(name = "id_fornecedor", length = 60, nullable = true)
 	private Long idFornecedor;
 	
+	@NotNull
+	@Column(name = "classificacao", length = 5, nullable = false)
+	private Integer classificacao;
+	
+	@NotNull
+	@Column(name = "menor_preco",  nullable = false)
+	private BigDecimal menorPreco;
+	
+
+	
 	
 	public Long getId() {
 		return id;
@@ -43,6 +57,15 @@ public class ProdutoEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+		
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 
 	public String getCodigo() {
@@ -75,13 +98,22 @@ public class ProdutoEntity {
 
 	public void setIdFornecedor(Long idFornecedor) {
 		this.idFornecedor = idFornecedor;
-	}	
-	
-	
-	public ProdutoDTO transformaEmDTO() {
-	    return new ProdutoDTO(this.getId(), this.getCodigo(), this.getDescricao(), null);
 	}
-	
 
-	
+	public Integer getClassificacao() {
+		return classificacao;
+	}
+
+	public void setClassificacao(Integer classificacao) {
+		this.classificacao = classificacao;
+	}
+
+	public BigDecimal getMenorPreco() {
+		return menorPreco;
+	}
+
+	public void setMenorPreco(BigDecimal menorPreco) {
+		this.menorPreco = menorPreco;
+	}
+
 }

@@ -25,10 +25,24 @@ public class CategoriaController {
 		List<CategoriaEntity> listaCategoriaEntity = this.categoriaRepository.findByListaCategoriasInferioresIsNotEmpty();
 		
 		for (CategoriaEntity categoriaEntity : listaCategoriaEntity) {
-			CategoriaDTO categoriaDTO = CategoriaEntity.transformaEmDTO(categoriaEntity);			
+			CategoriaDTO categoriaDTO = transformaEntityEmDTO(categoriaEntity);			
 			listaCategoriaDTO.add(categoriaDTO);
 		}
 		
 		return listaCategoriaDTO;	
+	}
+	
+	
+	private static CategoriaDTO transformaEntityEmDTO(CategoriaEntity categoriaEntity) {		
+		CategoriaDTO categoriaDTO = new CategoriaDTO(categoriaEntity.getId(), categoriaEntity.getDescricao());
+		
+		if (!categoriaEntity.getListaCategoriasInferiores().isEmpty()) {
+		   categoriaDTO.setListaCategoriasInferiores(new ArrayList<CategoriaDTO>());	
+		   for (CategoriaEntity categoriaEntityInferior : categoriaEntity.getListaCategoriasInferiores() ) {
+			    CategoriaDTO  categoriaDTOInferior = transformaEntityEmDTO(categoriaEntityInferior);
+			    categoriaDTO.getListaCategoriasInferiores().add(categoriaDTOInferior);  			   
+		   }			
+		}		
+		return categoriaDTO;
 	}
 }

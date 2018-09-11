@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FornecedorController {
 
 	@Autowired
-	protected JpaRepository<FornecedorEntity, Long> fornecedorRepository;
+	protected FornecedorRepository fornecedorRepository;
 
 	@GetMapping
 	public List<FornecedorEntity> listar() {

@@ -1,7 +1,6 @@
 package br.com.hubmarket.produto.categoria;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -89,20 +88,6 @@ public class CategoriaEntity implements Serializable{
 	public void setListaCategoriasInferiores(List<CategoriaEntity> listaCategoriasInferiores) {
 		this.listaCategoriasInferiores = listaCategoriasInferiores;
 	}
-	
-	
 		
-	public static CategoriaDTO transformaEmDTO(CategoriaEntity categoriaEntity) {		
-		CategoriaDTO categoriaDTO = new CategoriaDTO(categoriaEntity.getId(), categoriaEntity.getDescricao());
-		
-		if (!categoriaEntity.getListaCategoriasInferiores().isEmpty()) {
-		   categoriaDTO.setListaCategoriasInferiores(new ArrayList<CategoriaDTO>());	
-		   for (CategoriaEntity categoriaEntityInferior : categoriaEntity.getListaCategoriasInferiores() ) {
-			    CategoriaDTO  categoriaDTOInferior = CategoriaEntity.transformaEmDTO(categoriaEntityInferior);
-			    categoriaDTO.getListaCategoriasInferiores().add(categoriaDTOInferior);  			   
-		   }			
-		}		
-		return categoriaDTO;
-	}
 	 
 }
