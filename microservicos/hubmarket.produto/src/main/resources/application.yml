@@ -21,10 +21,12 @@ spring:
           use_jdbc_metadata_defaults: false
     show-sql: true  
     generate-ddl: true
+    
+  jackson:
+    serialization:
+      fail-on-empty-beans: false    
 
 cors:
   allowed-origins: http://localhost:8080 
   
-#  jackson:
-#    serialization:
-#      fail-on-empty-beans: false
+

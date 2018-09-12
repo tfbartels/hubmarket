@@ -15,14 +15,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "categoria")
-@JsonIdentityInfo(
+/*@JsonIdentityInfo(
 		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+		  property = "id")*/
 public class CategoriaEntity implements Serializable{
 	
 	/**
@@ -38,15 +39,13 @@ public class CategoriaEntity implements Serializable{
 	@Column(name = "descricao", length = 500, nullable = false)
 	private String descricao;
 
+	@JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_categoria_superior", referencedColumnName = "id", updatable = false, insertable = false)
-	//@OneToOne
-	//@JoinColumn(name="id_categoria_superior")
-	//@JsonBackReference
+    @JoinColumn(name = "id_categoria_superior", referencedColumnName = "id")	
 	private CategoriaEntity categoriaSuperior;
     
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_categoria_superior", referencedColumnName = "id", updatable = false, insertable = false)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria_superior", referencedColumnName = "id")
 	//@OneToMany(mappedBy="categoriaSuperior", cascade = CascadeType.ALL)
 	//@JsonManagedReference
     private List<CategoriaEntity> listaCategoriasInferiores;

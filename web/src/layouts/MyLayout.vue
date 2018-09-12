@@ -1,5 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+
     <q-layout-header>
       <q-toolbar
         color="primary"
@@ -22,24 +23,27 @@
                 <img alt="Hub Market" src="statics/hubmarket-logo.png">
               </router-link >
             </div>
+
             <div class="col-12 col-md">
               <q-search
-               v-model="searchModel"
-               placeholder="O que você procura?"
-               icon="search"
-              />
+              v-model="terms"
+              placeholder="O que você procura?"
+              icon="search"
+              >
+                <q-autocomplete @search="search" @selected="selected" />
+              </q-search>
             </div>
+
             <div class="col-12 col-md"/>
           </div>
         </q-toolbar-title>
+
         <q-btn flat round >
           <router-link class='link' :to="{ name:'carrinho'}">
             <q-icon name="shopping_cart" size='25px'/>
           </router-link >
         </q-btn>
-        <q-btn flat round >
-          <q-icon name="person" size='25px' />
-        </q-btn>
+
       </q-toolbar>
     </q-layout-header>
 
@@ -67,10 +71,15 @@ export default {
   components: { cpMenu },
   data () {
     return {
+      terms: '',
+      selected: '',
       leftDrawerOpen: false
     }
   },
   methods: {
+    search (terms) {
+      this.$router.push({name: 'listaproduto', params: {descricao: terms}})
+    },
     openURL
   }
 }

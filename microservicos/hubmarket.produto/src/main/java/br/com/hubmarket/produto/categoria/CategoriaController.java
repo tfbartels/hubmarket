@@ -33,6 +33,16 @@ public class CategoriaController {
 	}
 	
 	
+	@GetMapping("/2")
+	public List<CategoriaEntity> listar2() {
+		
+		List<CategoriaEntity> listaCategoriaEntity = this.categoriaRepository.findByListaCategoriasInferioresIsNotEmpty();
+		
+		
+		return listaCategoriaEntity;	
+	}
+	
+	
 	private static CategoriaDTO transformaEntityEmDTO(CategoriaEntity categoriaEntity) {		
 		CategoriaDTO categoriaDTO = new CategoriaDTO(categoriaEntity.getId(), categoriaEntity.getDescricao());
 		

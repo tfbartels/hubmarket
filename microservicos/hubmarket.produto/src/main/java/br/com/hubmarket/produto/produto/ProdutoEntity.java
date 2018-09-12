@@ -1,23 +1,35 @@
 package br.com.hubmarket.produto.produto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.hubmarket.produto.categoria.CategoriaEntity;
+import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorEntity;
 
 @Entity
 @Table(name = "produto")
-public class ProdutoEntity {
+public class ProdutoEntity implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1546901139442671842L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -33,12 +45,14 @@ public class ProdutoEntity {
 	@Column(name = "descricao", length = 500, nullable = false)
 	private String descricao;
 
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="id_categoria")
 	private CategoriaEntity categoria;
 	
-	@Column(name = "id_fornecedor", length = 60, nullable = true)
-	private Long idFornecedor;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "produto" , fetch = FetchType.LAZY)
+	private List<ProdutoFornecedorEntity> produtoFornecedor; 
 	
 	@NotNull
 	@Column(name = "classificacao", length = 5, nullable = false)
@@ -92,12 +106,13 @@ public class ProdutoEntity {
 		this.categoria = categoria;
 	}
 
-	public Long getIdFornecedor() {
-		return idFornecedor;
+	
+	public List<ProdutoFornecedorEntity> getProdutoFornecedor() {
+		return produtoFornecedor;
 	}
 
-	public void setIdFornecedor(Long idFornecedor) {
-		this.idFornecedor = idFornecedor;
+	public void setProdutoFornecedor(List<ProdutoFornecedorEntity> produtoFornecedor) {
+		this.produtoFornecedor = produtoFornecedor;
 	}
 
 	public Integer getClassificacao() {

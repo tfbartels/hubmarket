@@ -1,9 +1,11 @@
 package br.com.hubmarket.produto.produto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import br.com.hubmarket.produto.categoria.CategoriaDTO;
 import br.com.hubmarket.produto.fornecedor.FornecedorDTO;
+import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorDTO;
 
 
 public class ProdutoDTO {
@@ -12,11 +14,14 @@ public class ProdutoDTO {
 	private String codigo;	
 	private String descricao;
 	private CategoriaDTO categoria;
-	private FornecedorDTO fornecedor;
+	private List<ProdutoFornecedorDTO> produtoFornecedor;
 	private Integer classificacao;
 	private BigDecimal menorPreco;
 		
 	
+	public ProdutoDTO() {
+		
+	}
 	
 	public ProdutoDTO(Long id, String codigo, String descricao, Integer classificacao, BigDecimal menorPreco) {
 		super();
@@ -59,13 +64,13 @@ public class ProdutoDTO {
 		this.categoria = categoria;
 	}
 
-	
-	public FornecedorDTO getFornecedor() {
-		return fornecedor;
+		
+	public List<ProdutoFornecedorDTO> getProdutoFornecedor() {
+		return produtoFornecedor;
 	}
 
-	public void setFornecedor(FornecedorDTO fornecedor) {
-		this.fornecedor = fornecedor;
+	public void setProdutoFornecedor(List<ProdutoFornecedorDTO> produtoFornecedor) {
+		this.produtoFornecedor = produtoFornecedor;
 	}
 
 	public Integer getClassificacao() {
