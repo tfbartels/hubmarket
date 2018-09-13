@@ -40,7 +40,7 @@ export default {
   methods: {
     loadData () {
       axios
-        .get('http://localhost:8081/api/v1/produto/produto/' + this.$route.params.descricao)
+        .get('http://localhost:8081/api/v1/produto/produto/listarpordescricao/' + this.$route.params.descricao)
         .then(response => (this.listaProduto = response.data))
         .catch(error => console.log(error))
 

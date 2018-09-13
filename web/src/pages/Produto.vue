@@ -3,7 +3,7 @@
     <div class='content'>
       <div class="row" >
         <div class="col-12 col-md container-imagem">
-          <img class="imagem" :src="produto.imagem"/>
+          <img class="imagem" src="statics/telefone.jpg"/>
         </div>
         <div class="col-12 col-md">
           <h6 class='titulo-produto'>Teste{{this.produto.descricao}}</h6>
@@ -11,22 +11,13 @@
             <q-rating size="18px" readonly v-model="produto.classificacao" :max="5" />
           </div>
           <q-list link>
-            <q-item tag="label">
+            <q-item tag="label" v-for="(prodFornec, index) in produto.produtoFornecedor" :key="index" >
               <q-item-side>
-                <q-radio v-model="option" val="1" />
+                <q-radio v-model="option" :val="prodFornec.id" />
               </q-item-side>
               <q-item-main>
-                <q-item-tile label>R$ 100</q-item-tile>
-                <q-item-tile sublabel>Fornecedor 01</q-item-tile>
-              </q-item-main>
-            </q-item>
-            <q-item tag="label">
-              <q-item-side>
-                <q-radio v-model="option" val="2" />
-              </q-item-side>
-              <q-item-main>
-                <q-item-tile label>R$ 100</q-item-tile>
-                <q-item-tile sublabel>Fornecedor 01</q-item-tile>
+                <q-item-tile label>{{prodFornec.valorVenda | toCurrency}}</q-item-tile>
+                <q-item-tile sublabel>{{prodFornec.fornecedor.nome}}</q-item-tile>
               </q-item-main>
             </q-item>
           </q-list>
@@ -45,20 +36,26 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'produto',
   data () {
     return {
       option: '',
-      produto: {
-        id: 0,
-        imagem: 'statics/telefone.jpg',
-        classificacao: 4
-      }
+      produto: ''
     }
   },
   created () {
-    this.produto.id = this.$route.params.id
+    this.loadData()
+  },
+  methods: {
+    loadData () {
+      axios
+        .get('http://localhost:8081/api/v1/produto/produto/' + this.$route.params.id)
+        .then(response => (this.produto = response.data))
+        .catch(error => console.log(error))
+    }
   }
 }
 </script>
