@@ -6,7 +6,7 @@
           <img class="imagem" src="statics/telefone.jpg"/>
         </div>
         <div class="col-12 col-md">
-          <h6 class='titulo-produto'>Teste{{this.produto.descricao}}</h6>
+          <h6 class='titulo-produto'>{{this.produto.descricao}}</h6>
           <div class='container-classificacao' >
             <q-rating size="18px" readonly v-model="produto.classificacao" :max="5" />
           </div>

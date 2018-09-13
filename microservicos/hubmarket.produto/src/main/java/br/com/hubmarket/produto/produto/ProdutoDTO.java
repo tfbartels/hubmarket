@@ -3,8 +3,8 @@ package br.com.hubmarket.produto.produto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import br.com.hubmarket.produto.avaliacao.AvaliacaoDTO;
 import br.com.hubmarket.produto.categoria.CategoriaDTO;
-import br.com.hubmarket.produto.fornecedor.FornecedorDTO;
 import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorDTO;
 
 
@@ -13,21 +13,25 @@ public class ProdutoDTO {
 	private Long id;
 	private String codigo;	
 	private String descricao;
+	private String urlImagem;
 	private CategoriaDTO categoria;
-	private List<ProdutoFornecedorDTO> produtoFornecedor;
+	private List<ProdutoFornecedorDTO> listaProdutoFornecedor;
 	private Integer classificacao;
 	private BigDecimal menorPreco;
-		
+	private String detalhes;	
+	private List<AvaliacaoDTO> listaAvaliacao;
+	
 	
 	public ProdutoDTO() {
 		
 	}
 	
-	public ProdutoDTO(Long id, String codigo, String descricao, Integer classificacao, BigDecimal menorPreco) {
+	public ProdutoDTO(Long id, String codigo, String descricao, String urlImagem, Integer classificacao, BigDecimal menorPreco) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
 		this.descricao = descricao;
+		this.urlImagem = urlImagem;
 		this.classificacao = classificacao;
 		this.menorPreco = menorPreco;
 	}
@@ -56,6 +60,15 @@ public class ProdutoDTO {
 		this.descricao = descricao;
 	}
 
+		
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
+
 	public CategoriaDTO getCategoria() {
 		return categoria;
 	}
@@ -63,14 +76,14 @@ public class ProdutoDTO {
 	public void setCategoria(CategoriaDTO categoria) {
 		this.categoria = categoria;
 	}
-
 		
-	public List<ProdutoFornecedorDTO> getProdutoFornecedor() {
-		return produtoFornecedor;
+
+	public List<ProdutoFornecedorDTO> getListaProdutoFornecedor() {
+		return listaProdutoFornecedor;
 	}
 
-	public void setProdutoFornecedor(List<ProdutoFornecedorDTO> produtoFornecedor) {
-		this.produtoFornecedor = produtoFornecedor;
+	public void setListaProdutoFornecedor(List<ProdutoFornecedorDTO> listaProdutoFornecedor) {
+		this.listaProdutoFornecedor = listaProdutoFornecedor;
 	}
 
 	public Integer getClassificacao() {
@@ -88,5 +101,23 @@ public class ProdutoDTO {
 	public void setMenorPreco(BigDecimal menorPreco) {
 		this.menorPreco = menorPreco;
 	}
+
+	public String getDetalhes() {
+		return detalhes;
+	}
+
+	public void setDetalhes(String detalhes) {
+		this.detalhes = detalhes;
+	}
+
+	public List<AvaliacaoDTO> getListaAvaliacao() {
+		return listaAvaliacao;
+	}
+
+	public void setListaAvaliacao(List<AvaliacaoDTO> listaAvaliacao) {
+		this.listaAvaliacao = listaAvaliacao;
+	}
+	
+	
 
 }

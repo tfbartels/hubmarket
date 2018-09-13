@@ -50,8 +50,8 @@ INSERT INTO public.categoria(id, descricao, id_categoria_superior)
   
 
 --Produto
-INSERT INTO public.produto(id, codigo, descricao, id_categoria,  classificacao, menor_preco)
-	VALUES (1, '000001', 'TV 49" LG', 3,  4, 2999.00);
+INSERT INTO public.produto(id, codigo, descricao, id_categoria,  classificacao, menor_preco, detelhes)
+	VALUES (1, '000001', 'TV 49" LG', 3,  4, 2999.00, 'A TV LG 49 possui imagens realistas e tecnologias que você nunca viu. Com a plataforma Smart mais rápida do mercado, o WebOS 3.5 é muito mais intuitivo e conta com diversas funções novas, além de entregar uma melhor experiência para o consumidor. A função Quick Access permite acessar diversos recursos com um simples toque de botão do controle remoto. Outro diferencial do modelo LG 49 é a qualidade do painel IPS que oferece excelente qualidade de imagem para todos os seus conteúdos.');
 	
 INSERT INTO public.produto(id, codigo, descricao, id_categoria,  classificacao, menor_preco)
 	VALUES (2, '000002', 'TV 32" LG', 2,  3, 3999.00);	
@@ -81,4 +81,12 @@ INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compr
 	
 INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
 	VALUES (4, 4, 7, 2800, 3080, 1);
+	
+
+--Avaliacoes
+INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto)
+	VALUES (1, 5,'Ótimo produto, recomendado!', 1);
+	
+INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto)
+	VALUES (2, 3,'Boa nitidez de imagem, e muitas funcionalidades.', 1);	
 		

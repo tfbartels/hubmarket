@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.hubmarket.produto.avaliacao.AvaliacaoDTO;
+import br.com.hubmarket.produto.avaliacao.AvaliacaoEntity;
 import br.com.hubmarket.produto.fornecedor.FornecedorDTO;
 import br.com.hubmarket.produto.fornecedor.FornecedorService;
 import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorDTO;
@@ -32,29 +34,38 @@ public class ProdutoController {
 					
 		ProdutoEntity produtoEntity =  this.produtoRepository.findById(id).get();	
 	    ProdutoDTO produtoDTO = new ProdutoDTO(produtoEntity.getId(), produtoEntity.getCodigo(), produtoEntity.getDescricao(), 
-				   					produtoEntity.getClassificacao(), produtoEntity.getMenorPreco());	   
-	    produtoDTO.setProdutoFornecedor(new ArrayList<ProdutoFornecedorDTO>());
+				   					produtoEntity.getUrlImagem(), produtoEntity.getClassificacao(), produtoEntity.getMenorPreco());
+	    produtoDTO.setDetalhes(produtoEntity.getDetalhes());
+	    	    
 	    
-		for (ProdutoFornecedorEntity produtoFornecedorEntity : produtoEntity.getProdutoFornecedor()) {
+	    //Lista Produto Fornecedor
+	    produtoDTO.setListaProdutoFornecedor(new ArrayList<ProdutoFornecedorDTO>());
+		for (ProdutoFornecedorEntity produtoFornecedorEntity : produtoEntity.getListaProdutoFornecedor()) {
 			 FornecedorDTO fornecedorDTO = fornecedorService.buscaFornecedorPorId(produtoFornecedorEntity.getIdFornecedor());
 			 ProdutoFornecedorDTO produtoFornecedorDTO = new ProdutoFornecedorDTO(produtoFornecedorEntity.getId(), fornecedorDTO, 
 					 										 produtoFornecedorEntity.getQuantidade(), produtoFornecedorEntity.getValorVenda());
-			 
-			 produtoDTO.getProdutoFornecedor().add(produtoFornecedorDTO);
+			 			 
+			 produtoDTO.getListaProdutoFornecedor().add(produtoFornecedorDTO);
 		}
 		
+		//Lista Avaliacoes
+		produtoDTO.setListaAvaliacao(new ArrayList<AvaliacaoDTO>());
+		for (AvaliacaoEntity avaliacaoEntity : produtoEntity.getListaAvaliacao()) {			
+			 AvaliacaoDTO avaliacaoDTO = new AvaliacaoDTO(avaliacaoEntity.getId(),avaliacaoEntity.getClassificacao(),avaliacaoEntity.getDescricao());
+			 produtoDTO.getListaAvaliacao().add(avaliacaoDTO);
+		}
 		
 		return produtoDTO;
 	}
-	
-/*	@GetMapping("/{id}")
+/*	
+	@GetMapping("/{id}")
 	public ProdutoEntity buscaPorId(@PathVariable Long id) {
 					
 		ProdutoEntity produtoEntity =  this.produtoRepository.findById(id).get();	
 		
 		return produtoEntity;
-	}
-		*/	
+	}*/
+			
 	
 	@GetMapping("/listarpordescricao/{descricao}")
 	public List<ProdutoDTO> listarPorDescricao(@PathVariable String descricao) {
@@ -65,7 +76,7 @@ public class ProdutoController {
 		
 		for (ProdutoEntity produtoEntity : listaProdutoEntity) {
 			ProdutoDTO produtoDTO = new ProdutoDTO(produtoEntity.getId(), produtoEntity.getCodigo(), produtoEntity.getDescricao(), 
-					  							   produtoEntity.getClassificacao(), produtoEntity.getMenorPreco() );				
+												   produtoEntity.getUrlImagem(), produtoEntity.getClassificacao(), produtoEntity.getMenorPreco() );				
 			listaProdutoDTO.add(produtoDTO);
 		}
 		

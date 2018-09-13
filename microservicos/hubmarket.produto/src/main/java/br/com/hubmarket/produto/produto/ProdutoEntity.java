@@ -18,13 +18,14 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import br.com.hubmarket.produto.avaliacao.AvaliacaoEntity;
 import br.com.hubmarket.produto.categoria.CategoriaEntity;
 import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorEntity;
 
 @Entity
 @Table(name = "produto")
-public class ProdutoEntity implements Serializable{
-	
+public class ProdutoEntity implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -33,37 +34,41 @@ public class ProdutoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="imagem")
-	private byte[] imagem;
-	
+
 	@NotNull
 	@Column(name = "codigo", length = 120, nullable = false)
-	private String codigo;	
-	
+	private String codigo;
+
 	@NotNull
 	@Column(name = "descricao", length = 500, nullable = false)
 	private String descricao;
 
+	@Column(name = "urlImagem")
+	private String urlImagem;
+	
 	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name="id_categoria")
+	@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoria;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy = "produto" , fetch = FetchType.LAZY)
-	private List<ProdutoFornecedorEntity> produtoFornecedor; 
-	
+	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
+	private List<ProdutoFornecedorEntity> listaProdutoFornecedor;
+
 	@NotNull
 	@Column(name = "classificacao", length = 5, nullable = false)
 	private Integer classificacao;
-	
-	@NotNull
-	@Column(name = "menor_preco",  nullable = false)
-	private BigDecimal menorPreco;
-	
 
-	
+	@NotNull
+	@Column(name = "menor_preco", nullable = false)
+	private BigDecimal menorPreco;
+
+	@Column(name = "detalhes", length = 1000, nullable = true)
+	private String detalhes;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
+	private List<AvaliacaoEntity> listaAvaliacao;
 	
 	public Long getId() {
 		return id;
@@ -71,15 +76,6 @@ public class ProdutoEntity implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-		
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
 	}
 
 	public String getCodigo() {
@@ -97,6 +93,15 @@ public class ProdutoEntity implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
 
 	public CategoriaEntity getCategoria() {
 		return categoria;
@@ -106,13 +111,12 @@ public class ProdutoEntity implements Serializable{
 		this.categoria = categoria;
 	}
 
-	
-	public List<ProdutoFornecedorEntity> getProdutoFornecedor() {
-		return produtoFornecedor;
+	public List<ProdutoFornecedorEntity> getListaProdutoFornecedor() {
+		return listaProdutoFornecedor;
 	}
 
-	public void setProdutoFornecedor(List<ProdutoFornecedorEntity> produtoFornecedor) {
-		this.produtoFornecedor = produtoFornecedor;
+	public void setListaProdutoFornecedor(List<ProdutoFornecedorEntity> listaProdutoFornecedor) {
+		this.listaProdutoFornecedor = listaProdutoFornecedor;
 	}
 
 	public Integer getClassificacao() {
@@ -129,6 +133,22 @@ public class ProdutoEntity implements Serializable{
 
 	public void setMenorPreco(BigDecimal menorPreco) {
 		this.menorPreco = menorPreco;
+	}
+
+	public String getDetalhes() {
+		return detalhes;
+	}
+
+	public void setDetalhes(String detalhes) {
+		this.detalhes = detalhes;
+	}
+
+	public List<AvaliacaoEntity> getListaAvaliacao() {
+		return listaAvaliacao;
+	}
+
+	public void setListaAvaliacao(List<AvaliacaoEntity> listaAvaliacao) {
+		this.listaAvaliacao = listaAvaliacao;
 	}
 
 }
