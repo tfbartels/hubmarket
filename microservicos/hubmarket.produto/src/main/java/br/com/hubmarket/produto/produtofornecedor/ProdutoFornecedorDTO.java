@@ -2,10 +2,12 @@ package br.com.hubmarket.produto.produtofornecedor;
 
 import java.math.BigDecimal;
 
-import br.com.hubmarket.produto.categoria.CategoriaDTO;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import br.com.hubmarket.produto.fornecedor.FornecedorDTO;
 
-
+@JsonInclude(Include.NON_NULL)
 public class ProdutoFornecedorDTO {
 	
 	private Long id;

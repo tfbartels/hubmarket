@@ -1,10 +1,10 @@
 package br.com.hubmarket.produto.avaliacao;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,14 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import br.com.hubmarket.produto.produto.ProdutoEntity;
 
 @Entity
 @Table(name = "avaliacao")
 public class AvaliacaoEntity implements Serializable {
-		
+
 	/**
 	 * 
 	 */
@@ -33,17 +31,18 @@ public class AvaliacaoEntity implements Serializable {
 	@NotNull
 	@Column(name = "classificacao", length = 5, nullable = false)
 	private Integer classificacao;
-	
+
 	@NotNull
 	@Column(name = "descricao", length = 500, nullable = false)
 	private String descricao;
-	
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_produto", referencedColumnName="id")
-	private ProdutoEntity produto;	
-	
-	
+
+	@Column(name = "data_criacao")
+	private Date dataCriacao;
+
+	@ManyToOne()
+	@JoinColumn(name = "id_produto", referencedColumnName = "id")
+	private ProdutoEntity produto;
+
 	public Long getId() {
 		return id;
 	}
@@ -74,6 +73,14 @@ public class AvaliacaoEntity implements Serializable {
 
 	public void setProduto(ProdutoEntity produto) {
 		this.produto = produto;
-	}	
-		
+	}
+
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
 }

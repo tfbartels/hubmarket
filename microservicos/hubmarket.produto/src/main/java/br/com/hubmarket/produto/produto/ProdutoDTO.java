@@ -3,11 +3,14 @@ package br.com.hubmarket.produto.produto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import br.com.hubmarket.produto.avaliacao.AvaliacaoDTO;
 import br.com.hubmarket.produto.categoria.CategoriaDTO;
 import br.com.hubmarket.produto.produtofornecedor.ProdutoFornecedorDTO;
 
-
+@JsonInclude(Include.NON_NULL)
 public class ProdutoDTO {
 	
 	private Long id;

@@ -43,7 +43,7 @@ export default {
       listaProdutos: [
         {
           id: 1,
-          imagem: 'statics/telefone.jpg',
+          imagem: 'statics/imagens/tvlg49.jpg',
           descricao: 'Telefone Motorola',
           fornecedor: 'Motorola',
           quantidade: '1',
@@ -52,7 +52,7 @@ export default {
         },
         {
           id: 2,
-          imagem: 'statics/telefone.jpg',
+          imagem: 'statics/imagens/tvlg32.jpg',
           descricao: 'Telefone Motorola',
           fornecedor: 'Motorola',
           quantidade: '1',

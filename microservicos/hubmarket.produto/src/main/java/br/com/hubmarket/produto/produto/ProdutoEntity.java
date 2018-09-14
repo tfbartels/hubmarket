@@ -47,12 +47,11 @@ public class ProdutoEntity implements Serializable {
 	private String urlImagem;
 	
 	@JsonManagedReference
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoria;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<ProdutoFornecedorEntity> listaProdutoFornecedor;
 
 	@NotNull
@@ -65,9 +64,8 @@ public class ProdutoEntity implements Serializable {
 
 	@Column(name = "detalhes", length = 1000, nullable = true)
 	private String detalhes;
-
-	@JsonManagedReference
-	@OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
+	
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<AvaliacaoEntity> listaAvaliacao;
 	
 	public Long getId() {

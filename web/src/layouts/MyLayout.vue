@@ -20,7 +20,7 @@
           <div class="row items-center" >
             <div class="col-12 col-md">
               <router-link class='link' :to="{ name:'index'}">
-                <img alt="Hub Market" src="statics/hubmarket-logo.png">
+                <img alt="Hub Market" src="statics/imagens/hubmarket-logo.png">
               </router-link >
             </div>
 

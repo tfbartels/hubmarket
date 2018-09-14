@@ -3,7 +3,7 @@
     <div class='content'>
       <div class="row" >
         <div class="col-12 col-md container-imagem">
-          <img class="imagem" src="statics/telefone.jpg"/>
+          <img class="imagem" :src="this.produto.urlImagem"/>
         </div>
         <div class="col-12 col-md">
           <h6 class='titulo-produto'>{{this.produto.descricao}}</h6>
@@ -11,13 +11,13 @@
             <q-rating size="18px" readonly v-model="produto.classificacao" :max="5" />
           </div>
           <q-list link>
-            <q-item tag="label" v-for="(prodFornec, index) in produto.produtoFornecedor" :key="index" >
+            <q-item tag="label" v-for="(produtoFornecedor, index) in this.produto.listaProdutoFornecedor" :key="index" >
               <q-item-side>
-                <q-radio v-model="option" :val="prodFornec.id" />
+                <q-radio v-model="option" :val="produtoFornecedor.id" />
               </q-item-side>
               <q-item-main>
-                <q-item-tile label>{{prodFornec.valorVenda | toCurrency}}</q-item-tile>
-                <q-item-tile sublabel>{{prodFornec.fornecedor.nome}}</q-item-tile>
+                <q-item-tile label>{{produtoFornecedor.valorVenda | toCurrency}}</q-item-tile>
+                <q-item-tile sublabel>{{produtoFornecedor.fornecedor.nome}}</q-item-tile>
               </q-item-main>
             </q-item>
           </q-list>
@@ -28,7 +28,7 @@
       </div>
       <div>
         <h6 class='titulo'>Detalhes do produto</h6>
-        {{produto.id}}
+        {{produto.detalhes}}
         <h6 class='titulo'>Avaliações</h6>
       </div>
     </div>

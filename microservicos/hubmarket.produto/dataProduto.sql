@@ -84,9 +84,12 @@ INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compr
 	
 
 --Avaliacoes
-INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto)
-	VALUES (1, 5,'Ótimo produto, recomendado!', 1);
+INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto, data_criacao)
+	VALUES (1, 5,'Ótimo produto, recomendado!', 1, '02/08/2018');
 	
-INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto)
-	VALUES (2, 3,'Boa nitidez de imagem, e muitas funcionalidades.', 1);	
+INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto, data_criacao)
+	VALUES (2, 3,'Boa nitidez de imagem, e muitas funcionalidades.', 1, '07/09/2018');	
+
+INSERT INTO public.avaliacao(id, classificacao, descricao, id_produto, data_criacao)
+	VALUES (3, 4,'TV muito boa. Indicado!', 2, '07/10/2018');	
 		

@@ -29,7 +29,6 @@ public class ProdutoFornecedorEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_produto", referencedColumnName="id")
 	private ProdutoEntity produto;	

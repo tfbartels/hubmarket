@@ -4,7 +4,7 @@
       <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
         <router-link class='link' :to="{ name:'produto', params: { id: produto.id }}">
           <q-card-media class="media">
-            <img src="statics/telefone.jpg">
+            <img :src="produto.urlImagem">
           </q-card-media>
           <q-card-main>
             <div>{{produto.descricao}}</div>
