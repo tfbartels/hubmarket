@@ -30,6 +30,17 @@
         <h6 class='titulo'>Detalhes do produto</h6>
         {{produto.detalhes}}
         <h6 class='titulo'>Avaliações</h6>
+        <q-list separator>
+          <q-item multiline v-for="(avaliacao, index) in this.produto.listaAvaliacao" :key="index">
+            <q-item-main>
+              <q-rating size="18px" readonly v-model="avaliacao.classificacao" :max="5" />
+              <q-item-tile sublabel>{{avaliacao.descricao}}</q-item-tile>
+            </q-item-main>
+            <q-item-side right>
+              <q-item-tile class='dataAvaliacao'>{{avaliacao.dataCriacao}}</q-item-tile>
+            </q-item-side>
+          </q-item>
+        </q-list>
       </div>
     </div>
   </q-page>
@@ -79,6 +90,7 @@ export default {
     margin: .2em 0 .4em;
     padding-bottom: .4em;
     border-bottom: 1px solid #ddd;
+    font-size: calc(13px + .5vw);
   }
 
   .container-classificacao{
@@ -87,6 +99,10 @@ export default {
 
   .content .container-btn{
     text-align: right;
+  }
+
+  .dataAvaliacao{
+    font-size: 12px;
   }
 
   .q-btn{

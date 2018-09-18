@@ -100,6 +100,7 @@ export default {
   padding-bottom: .4em;
   border-bottom: 1px solid #ddd;
   color: #003163;
+  font-size: calc(15px + .5vw);
 }
 
 </style>
