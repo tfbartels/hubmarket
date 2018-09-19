@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import routes from './routes'
 
 Vue.use(VueRouter)
@@ -21,7 +20,6 @@ Vue.filter('toCurrency', function (value) {
  * If not building with SSR mode, you can
  * directly export the Router instantiation
  */
-
 export default function (/* { store, ssrContext } */) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ y: 0 }),

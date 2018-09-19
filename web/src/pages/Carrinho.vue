@@ -1,13 +1,14 @@
 <template>
   <q-page  class='content'>
     <h6 class='titulo'>Carrinho</h6>
+    {{this.$store.state.carrinho.count}}
     <div class="row" >
       <div class="col-12 col-md">
         <q-input class="cep" type="number" stack-label="CEP" v-model="cep" />
       </div>
     </div>
     <q-list inset-separator class="q-mt-md">
-      <q-item tag="label"  v-for="(produto, index) in listaProdutos" :key="index">
+      <q-item tag="label"  v-for="(produto, index) in this.$store.state.carrinho.listaItens" :key="index">
         <q-item-side :avatar="produto.imagem" />
         <q-item-main multiline>
           <q-item-tile label>{{produto.descricao}}</q-item-tile>
@@ -40,26 +41,7 @@ export default {
   data () {
     return {
       cep: '',
-      listaProdutos: [
-        {
-          id: 1,
-          imagem: 'statics/imagens/tvlg49.jpg',
-          descricao: 'Telefone Motorola',
-          fornecedor: 'Motorola',
-          quantidade: '1',
-          valorUnitario: '800',
-          frete: '10'
-        },
-        {
-          id: 2,
-          imagem: 'statics/imagens/tvlg32.jpg',
-          descricao: 'Telefone Motorola',
-          fornecedor: 'Motorola',
-          quantidade: '1',
-          valorUnitario: '600',
-          frete: '50'
-        }
-      ],
+      listaProdutos: [],
       selected: '',
       quantidadeOptions: [
         {
@@ -73,9 +55,16 @@ export default {
       ]
     }
   },
+  created: function () {
+    this.loadData()
+  },
   methods: {
     subtotal (quantidade, valorUnitario, frete) {
       return (parseFloat(quantidade) * parseFloat(valorUnitario)) + parseFloat(frete)
+    },
+
+    loadData () {
+      this.listaProdutos = this.$store.state.carrinho.listaItens
     }
   }
 }

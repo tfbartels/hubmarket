@@ -40,7 +40,7 @@ public class AvaliacaoEntity implements Serializable {
 	private Date dataCriacao;
 
 	@ManyToOne()
-	@JoinColumn(name = "id_produto", referencedColumnName = "id")
+	@JoinColumn(name = "id_produto")
 	private ProdutoEntity produto;
 
 	public Long getId() {

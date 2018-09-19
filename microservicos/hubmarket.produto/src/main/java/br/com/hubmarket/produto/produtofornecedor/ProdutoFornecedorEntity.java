@@ -30,7 +30,7 @@ public class ProdutoFornecedorEntity implements Serializable{
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_produto", referencedColumnName="id")
+	@JoinColumn(name = "id_produto")
 	private ProdutoEntity produto;	
 	
 	private Long idFornecedor;

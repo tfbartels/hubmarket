@@ -51,7 +51,7 @@ public class ProdutoEntity implements Serializable {
 	@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoria;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,  mappedBy = "produto")
 	private List<ProdutoFornecedorEntity> listaProdutoFornecedor;
 
 	@NotNull
@@ -65,7 +65,7 @@ public class ProdutoEntity implements Serializable {
 	@Column(name = "detalhes", length = 1000, nullable = true)
 	private String detalhes;
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,  mappedBy = "produto")
 	private List<AvaliacaoEntity> listaAvaliacao;
 	
 	public Long getId() {

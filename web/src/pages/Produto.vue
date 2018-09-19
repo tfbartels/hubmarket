@@ -22,7 +22,7 @@
             </q-item>
           </q-list>
           <div class='container-btn' >
-            <q-btn label="Comprar" color="primary" />
+            <q-btn label="Comprar" color="primary" @click="adicionarCarrinho"/>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       option: '',
-      produto: ''
+      produto: {}
     }
   },
   created () {
@@ -66,6 +66,11 @@ export default {
         .get('http://localhost:8081/api/v1/produto/produto/' + this.$route.params.id)
         .then(response => (this.produto = response.data))
         .catch(error => console.log(error))
+    },
+
+    adicionarCarrinho () {
+      this.$store.commit('carrinho/adicionar', this.produto)
+      this.$store.commit('carrinho/increment')
     }
   }
 }
