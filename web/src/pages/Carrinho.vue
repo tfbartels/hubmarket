@@ -2,13 +2,14 @@
   <q-page  class='content'>
     <h6 class='titulo'>Carrinho</h6>
     {{this.$store.state.carrinho.count}}
+    {{this.$q.localStorage.get.item('c')}}
     <div class="row" >
       <div class="col-12 col-md">
         <q-input class="cep" type="number" stack-label="CEP" v-model="cep" />
       </div>
     </div>
     <q-list inset-separator class="q-mt-md">
-      <q-item tag="label"  v-for="(produto, index) in this.$store.state.carrinho.listaItens" :key="index">
+      <q-item tag="label"  v-for="(produto, index) in listaProdutos" :key="index">
         <q-item-side :avatar="produto.imagem" />
         <q-item-main multiline>
           <q-item-tile label>{{produto.descricao}}</q-item-tile>
@@ -64,7 +65,7 @@ export default {
     },
 
     loadData () {
-      this.listaProdutos = this.$store.state.carrinho.listaItens
+      this.listaProdutos = this.$q.localStorage.get.item('listaItensCarrinho')
     }
   }
 }
