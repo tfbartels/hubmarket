@@ -12,7 +12,7 @@
         <q-item-main multiline>
           <q-item-tile label>{{produto.descricao}}</q-item-tile>
           <q-item-tile sublabel>Fornecedor: {{produto.fornecedor.nome}}</q-item-tile>
-          <q-select float-label="Quantidade:" align="left" class="quantidade"
+          <q-select float-lasabel="Quantidade:" align="left" class="quantidade"
            v-model="produto.quantidade"
            :options="quantidadeOptions"/>
            <q-item-tile sublabel>Prazo de entrega: {{produto.prazoEntrega}}</q-item-tile>
