@@ -7,22 +7,10 @@ server:
   
 zuul:
  prefix: /api/v1
- routes:  
-  auth:
-   path: /auth/**
-   sensitiveHeaders:
-   serviceId: auth
+ routes: 
   produto:
    path: /produto/**
    serviceId: produto
-
-
-#security:
-#  oauth2:     
-#    client:
-#      accessTokenUri: http://localhost:8080/api/auth/oauth/token
-#      userAuthorizationUri: http://localhost:8080/api/auth/oauth/authorize
-#      clientId: web
-#      clientSecret: 12345
-#    resource:
-#      userInfoUri: http://localhost:8080/api/auth/user
+  pedido:
+   path: /pedido/**
+   serviceId: pedido

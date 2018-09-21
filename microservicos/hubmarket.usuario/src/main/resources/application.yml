@@ -23,6 +23,5 @@ spring:
     generate-ddl: true
 
   
-#  jackson:
-#    serialization:
-#      fail-on-empty-beans: false
+cors:
+  allowed-origins: http://localhost:8080 

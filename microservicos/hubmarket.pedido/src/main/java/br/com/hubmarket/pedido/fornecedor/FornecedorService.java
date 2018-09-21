@@ -1,4 +1,4 @@
-package br.com.hubmarket.produto.fornecedor;
+package br.com.hubmarket.pedido.fornecedor;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
