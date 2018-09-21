@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/freteprazoentrega")
 public class MockFretePrazoEntregaController {
 	
-	@GetMapping("/pontofrio/{cep}")
-	public FretePrazoEntrega calcularFretePrazoEntregaPontoFrio(@PathVariable String cep) {
+	@GetMapping("/maxeletro/{cep}")
+	public FretePrazoEntrega calcularFretePrazoEntregaMaxEletro(@PathVariable String cep) {
 		
 		Random gerador = new Random();
 		FretePrazoEntrega fretePrazoEntrega =  new FretePrazoEntrega();
@@ -25,8 +25,8 @@ public class MockFretePrazoEntregaController {
 		return fretePrazoEntrega;
 	}
 	
-	@GetMapping("/casasbahia/{cep}")
-	public FretePrazoEntrega calcularFretePrazoEntregaCasaBahia(@PathVariable String cep) {
+	@GetMapping("/teceletro/{cep}")
+	public FretePrazoEntrega calcularFretePrazoEntregaTecEletro(@PathVariable String cep) {
 		
 		Random gerador = new Random();
 		FretePrazoEntrega fretePrazoEntrega =  new FretePrazoEntrega();
@@ -37,8 +37,8 @@ public class MockFretePrazoEntregaController {
 		return fretePrazoEntrega;
 	}
 	
-	@GetMapping("/magazineluiza/{cep}")
-	public FretePrazoEntrega calcularFretePrazoEntregaMagazineLuiza(@PathVariable String cep) {
+	@GetMapping("/flyeletro/{cep}")
+	public FretePrazoEntrega calcularFretePrazoEntregaFlyEletro(@PathVariable String cep) {
 		
 		Random gerador = new Random();
 		FretePrazoEntrega fretePrazoEntrega =  new FretePrazoEntrega();
@@ -49,8 +49,8 @@ public class MockFretePrazoEntregaController {
 		return fretePrazoEntrega;
 	}
 	
-	@GetMapping("/ricardoeletro/{cep}")
-	public FretePrazoEntrega calcularFretePrazoEntregaRicardoEletro(@PathVariable String cep) {
+	@GetMapping("/alfaeletro/{cep}")
+	public FretePrazoEntrega calcularFretePrazoEntregaAlfaEletro(@PathVariable String cep) {
 		
 		Random gerador = new Random();
 		FretePrazoEntrega fretePrazoEntrega =  new FretePrazoEntrega();

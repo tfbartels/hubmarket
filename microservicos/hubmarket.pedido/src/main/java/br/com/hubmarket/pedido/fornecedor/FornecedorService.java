@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "usuario", path = "/fornecedor")
 public interface FornecedorService {
 
-	@GetMapping("{id}")
-	FornecedorDTO buscaFornecedorPorId(@PathVariable("id") Long id);
+	@GetMapping("/buscaurlservicofreteprazoentrega/{id}")
+	String buscaUrlServicoFretePrazoEntrega(@PathVariable("id") Long id);
 }

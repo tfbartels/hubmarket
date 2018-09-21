@@ -1,15 +1,13 @@
 package br.com.hubmarket.pedido.itemPedido;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
-import br.com.hubmarket.pedido.fornecedor.FornecedorDTO;
 import br.com.hubmarket.pedido.fornecedor.FornecedorService;
 
 @RestController
@@ -22,12 +20,10 @@ public class ItemPedidoController {
 
 	@GetMapping("/obterfreteprazoentrega/{idFornecedor}/{cep}")
 	public ItemPedidoDTO obterFretePrazoEntrega(@PathVariable Long idFornecedor, @PathVariable String cep) {
+		RestTemplate restTemplate = new RestTemplate();
+		String urlServico = fornecedorService.buscaUrlServicoFretePrazoEntrega(idFornecedor);
 
-		FornecedorDTO fornecedorDTO = fornecedorService.buscaFornecedorPorId(idFornecedor);
-		ItemPedidoDTO itemPedido = new ItemPedidoDTO();
-
-		itemPedido.setValorFrete(new BigDecimal(20));
-		itemPedido.setPrazoEntrega("10 dias");
+		ItemPedidoDTO itemPedido = restTemplate.getForObject(urlServico, ItemPedidoDTO.class, cep);	
 
 		return itemPedido;
 	}
