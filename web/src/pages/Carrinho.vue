@@ -1,8 +1,6 @@
 <template>
   <q-page  class='content'>
     <h6 class='titulo'>Carrinho</h6>
-    {{this.$store.state.carrinho.count}}
-    {{this.$q.localStorage.get.item('c')}}
     <div class="row" >
       <div class="col-12 col-md">
         <q-input class="cep" type="number" stack-label="CEP" v-model="cep" />
@@ -10,20 +8,20 @@
     </div>
     <q-list inset-separator class="q-mt-md">
       <q-item tag="label"  v-for="(produto, index) in listaProdutos" :key="index">
-        <q-item-side :avatar="produto.imagem" />
+        <q-item-side :avatar="produto.urlImagem" />
         <q-item-main multiline>
           <q-item-tile label>{{produto.descricao}}</q-item-tile>
-          <q-item-tile sublabel>Fornecedor: {{produto.fornecedor}}</q-item-tile>
+          <q-item-tile sublabel>Fornecedor: {{produto.fornecedor.nome}}</q-item-tile>
           <q-select float-label="Quantidade:" align="left" class="quantidade"
            v-model="produto.quantidade"
            :options="quantidadeOptions"/>
-           <q-item-tile sublabel>Prazo de entrega: 10 dias uteis</q-item-tile>
+           <q-item-tile sublabel>Prazo de entrega: {{produto.prazoEntrega}}</q-item-tile>
         </q-item-main>
         <q-item-side right>
-          <q-item-tile sublabel>Valor unitário: {{produto.valorUnitario}}</q-item-tile>
-          <q-item-tile sublabel>Valor frete: {{produto.frete}}</q-item-tile>
+          <q-item-tile sublabel>Valor unitário: {{produto.valorUnitario | toCurrency}}</q-item-tile>
+          <q-item-tile sublabel>Valor frete: {{produto.frete | toCurrency}}</q-item-tile>
           <q-item-separator />
-          <q-item-tile sublabel>Subtotal: {{subtotal(produto.quantidade, produto.valorUnitario, produto.frete)}}</q-item-tile>
+          <q-item-tile sublabel>Subtotal: {{subtotal(produto.quantidade, produto.valorUnitario, produto.frete) | toCurrency}}</q-item-tile>
         </q-item-side>
       </q-item>
     </q-list>
@@ -65,7 +63,7 @@ export default {
     },
 
     loadData () {
-      this.listaProdutos = this.$q.localStorage.get.item('listaItensCarrinho')
+      this.listaProdutos = this.$q.localStorage.get.item('listaProdutosCarrinho')
     }
   }
 }

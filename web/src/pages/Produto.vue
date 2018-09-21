@@ -13,11 +13,11 @@
           <q-list link>
             <q-item tag="label" v-for="(produtoFornecedor, index) in this.produto.listaProdutoFornecedor" :key="index" >
               <q-item-side>
-                <q-radio v-model="option" :val="produtoFornecedor.id" />
+                <q-radio v-model="idProdFornecSelec" :val="produtoFornecedor.id" />
               </q-item-side>
               <q-item-main>
                 <q-item-tile label>{{produtoFornecedor.valorVenda | toCurrency}}</q-item-tile>
-              <!--  <q-item-tile sublabel>{{produtoFornecedor.fornecedor.nome}}</q-item-tile> -->
+                <q-item-tile sublabel>{{produtoFornecedor.fornecedor.nome}}</q-item-tile>
               </q-item-main>
             </q-item>
           </q-list>
@@ -53,7 +53,7 @@ export default {
   name: 'produto',
   data () {
     return {
-      option: '',
+      idProdFornecSelec: 0,
       produto: {}
     }
   },
@@ -69,9 +69,52 @@ export default {
     },
 
     adicionarCarrinho () {
-      this.$store.commit('carrinho/adicionar', this.produto)
-      this.$store.commit('carrinho/increment')
-      this.$q.localStorage.set('listaItensCarrinho', this.$store.state.carrinho.listaItens)
+      var produtoCarrinho = null
+      var lista = []
+
+      if (this.$q.localStorage.has('listaProdutosCarrinho')) {
+        lista = this.$q.localStorage.get.item('listaProdutosCarrinho')
+
+        for (var i = 0; i < lista.length; i++) {
+          if (lista[i].id === this.produto.id) {
+            produtoCarrinho = lista[i]
+            break
+          }
+        }
+      } else {
+        this.$q.localStorage.set('listaProdutosCarrinho', lista)
+      }
+
+      lista = this.$q.localStorage.get.item('listaProdutosCarrinho')
+
+      if (produtoCarrinho != null) {
+        produtoCarrinho.quantidade++
+      } else {
+        var prodFornecSelec = null
+        for (i = 0; i < this.produto.listaProdutoFornecedor.length; i++) {
+          if (this.produto.listaProdutoFornecedor[i].id === this.idProdFornecSelec) {
+            prodFornecSelec = this.produto.listaProdutoFornecedor[i]
+            break
+          }
+        }
+
+        produtoCarrinho = {
+          id: this.produto.id,
+          urlImagem: this.produto.urlImagem,
+          descricao: this.produto.descricao,
+          fornecedor: {
+            id: prodFornecSelec.id,
+            nome: prodFornecSelec.fornecedor.nome
+          },
+          quantidade: 0,
+          frete: 0,
+          valorUnitario: prodFornecSelec.valorVenda,
+          prazoEntrega: ''
+        }
+        lista.push(produtoCarrinho)
+      }
+
+      this.$q.localStorage.set('listaProdutosCarrinho', lista)
     }
   }
 }
