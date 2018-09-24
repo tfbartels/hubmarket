@@ -17,9 +17,11 @@
        </div>
       </div>
       <div class="col-12 col-md">
-        <div class="row justify-start">
-         {{produto.descricao}}
-        </div>
+        <router-link class='link' :to="{ name:'produto', params: { id: produto.id }}">
+          <div class="row justify-start">
+          {{produto.descricao}}
+          </div>
+        </router-link>
         <div class="row justify-start atributo">
          Fornecedor: {{produto.fornecedor.nome}}
         </div>

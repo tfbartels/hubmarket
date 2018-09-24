@@ -28,7 +28,9 @@
       </div>
       <div>
         <h6 class='titulo'>Detalhes do produto</h6>
-        {{produto.detalhes}}
+        <div class="detalhes-produto">
+          {{produto.detalhes}}
+        </div>
         <h6 class='titulo'>Avaliações</h6>
         <q-list separator>
           <q-item multiline v-for="(avaliacao, index) in this.produto.listaAvaliacao" :key="index">
@@ -95,7 +97,12 @@ export default {
       lista = this.$q.localStorage.get.item('listaProdutosCarrinho')
 
       if (produtoCarrinho != null) {
-        produtoCarrinho.quantidade++
+        this.$q.notify({
+          message: 'Produto já adicionado no carrinho.',
+          timeout: 1500,
+          type: 'warning',
+          position: 'top'
+        })
       } else {
         var prodFornecSelec = null
         for (i = 0; i < this.produto.listaProdutoFornecedor.length; i++) {
@@ -119,9 +126,16 @@ export default {
           prazoEntrega: ''
         }
         lista.push(produtoCarrinho)
-      }
 
-      this.$q.localStorage.set('listaProdutosCarrinho', lista)
+        this.$q.localStorage.set('listaProdutosCarrinho', lista)
+
+        this.$q.notify({
+          message: 'Produto adicionado no carrinho!',
+          timeout: 1500,
+          type: 'positive',
+          position: 'top'
+        })
+      }
     }
   }
 }
@@ -147,6 +161,11 @@ export default {
     padding-bottom: .4em;
     border-bottom: 1px solid #ddd;
     font-size: calc(13px + .5vw);
+  }
+
+  .detalhes-produto{
+    text-indent: 3.5em;
+    text-align: justify;
   }
 
   .container-classificacao{

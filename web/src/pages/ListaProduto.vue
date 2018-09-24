@@ -1,15 +1,15 @@
 <template>
   <q-page class='content'>
       <h6 class='titulo'>{{this.categoria.descricao}}</h6>
-      <q-card inline style="width: 250px;" v-for="(produto, index) in listaProduto" :key="index">
+      <q-card inline style="width: 230px;" v-for="(produto, index) in listaProduto" :key="index">
         <router-link class='link' :to="{ name:'produto', params: { id: produto.id }}">
           <q-card-media class="media">
             <img :src="produto.urlImagem">
           </q-card-media>
           <q-card-main>
-            <div>{{produto.descricao}}</div>
+            <div class="titulo-produto">{{produto.descricao}}</div>
             <q-rating size="18px" readonly v-model="produto.classificacao" :max="5" />
-            <div>{{produto.menorPreco | toCurrency}}</div>
+            <div class="preco-produto">{{produto.menorPreco | toCurrency}}</div>
           </q-card-main>
         </router-link>
       </q-card>
@@ -44,19 +44,27 @@ export default {
         .then(response => (this.listaProduto = response.data))
         .catch(error => console.log(error))
 
-      if (this.listaProduto.length > 0) {
-        this.categoria.descricao = this.$route.params.descricao
-      }
+      this.categoria.descricao = this.$route.params.descricao
     }
   }
 }
 </script>
 
 <style scoped>
- .media{
+.media{
   padding: 20px;
- }
- .q-card{
-  margin: 10px;
- }
+}
+
+.q-card{
+ margin: 10px;
+}
+
+.titulo-produto{
+  color: black;
+}
+
+.preco-produto{
+ margin-top: 15px;
+ color: #003163;
+}
 </style>
