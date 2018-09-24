@@ -69,6 +69,13 @@ export default {
     },
 
     adicionarCarrinho () {
+      if (this.idProdFornecSelec === 0) {
+        this.$q.dialog({
+          message: 'Selecione um fornecedor!'
+        })
+        return
+      }
+
       var produtoCarrinho = null
       var lista = []
 

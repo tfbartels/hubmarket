@@ -7,7 +7,8 @@
   "author": "Thiago Bartels <tfbartels@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "quasar dev -t ios",
+    "dev": "quasar dev -t ios",
+    "build": "quasar build -t ios",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },

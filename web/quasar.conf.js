@@ -52,7 +52,7 @@ module.exports = function (ctx) {
         'QCarousel',
         'QCarouselSlide',
         'QCarouselControl',
-        'QCollapsible',        
+        'QCollapsible',       
         'QField',
         'QIcon',
         'QInput',
@@ -81,6 +81,7 @@ module.exports = function (ctx) {
       ],
       // Quasar plugins
       plugins: [
+        'Dialog',
         'Notify',
         'LocalStorage' 
       ]

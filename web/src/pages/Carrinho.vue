@@ -1,40 +1,68 @@
 <template>
   <q-page  class='content'>
     <h6 class='titulo'>Carrinho</h6>
-    <div class="row" >
-      <div class="col-12 col-md">
+    <div class="row justify-end items-center componente" >
+      <div>
         <q-input class="cep" type="number" stack-label="CEP" v-model="cep" />
       </div>
+      <div class="calculacep" >
+        <q-btn @click="calculaFretePrazoEntrega()" label="Calcular" color="primary"/>
+      </div>
     </div>
-    <q-list inset-separator class="q-mt-md">
-      <q-item tag="label"  v-for="(produto, index) in listaProdutos" :key="index">
-        <q-item-side :avatar="produto.urlImagem" />
-        <q-item-main multiline>
-          <q-item-tile label>{{produto.descricao}}</q-item-tile>
-          <q-item-tile sublabel>Fornecedor: {{produto.fornecedor.nome}}</q-item-tile>
+
+    <div class="row componente item" v-for="(produto, index) in listaProdutos" :key="index">
+      <div class="col-1">
+       <div class="row justify-start">
+        <img :src="produto.urlImagem" class="imagem">
+       </div>
+      </div>
+      <div class="col-12 col-md">
+        <div class="row justify-start">
+         {{produto.descricao}}
+        </div>
+        <div class="row justify-start atributo">
+         Fornecedor: {{produto.fornecedor.nome}}
+        </div>
+        <div class="row quantidade justify-start">
           <q-select float-lasabel="Quantidade:" align="left" class="quantidade"
-           v-model="produto.quantidade"
-           :options="quantidadeOptions"/>
-           <q-item-tile sublabel>Prazo de entrega: {{produto.prazoEntrega}}</q-item-tile>
-        </q-item-main>
-        <q-item-side right>
-          <q-item-tile sublabel>Valor unitário: {{produto.valorUnitario | toCurrency}}</q-item-tile>
-          <q-item-tile sublabel>Valor frete: {{produto.frete | toCurrency}}</q-item-tile>
-          <q-item-separator />
-          <q-item-tile sublabel>Subtotal: {{subtotal(produto.quantidade, produto.valorUnitario, produto.frete) | toCurrency}}</q-item-tile>
-        </q-item-side>
-      </q-item>
-    </q-list>
-    <div class="row" >
-      Total:
+          v-model="produto.quantidade"
+          :options="quantidadeOptions"/>
+        </div>
+      </div>
+      <div class="col-12 col-md">
+      </div>
+      <div class="col-12 col-md">
+        <div class="row">
+         <q-btn label="Excluir" oultine color="red" size="sm" @click="excluirCarrinho(produto.id)"/>
+        </div>
+      </div>
+      <div class="col-12 col-md">
+        <div class="row justify-end atributo">
+         Prazo de entrega: {{produto.prazoEntrega}}
+        </div>
+        <div class="row justify-end atributo">
+         Valor unitário: {{produto.valorUnitario | toCurrency}}
+        </div>
+        <div class="row justify-end atributo">
+          Valor frete: {{produto.frete | toCurrency}}
+        </div>
+        <div class="row justify-end subtotal">
+         Subtotal: {{subtotal(produto.quantidade, produto.valorUnitario, produto.frete) | toCurrency}}
+        </div>
+      </div>
     </div>
-    <div class="row" >
+    <div class="row justify-end total componente" >
+      Total: {{total() | toCurrency}}
+    </div>
+    <div class="row justify-end componente" >
       <q-btn label="Finalizar Comprar" color="primary" />
     </div>
   </q-page>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Carrinho',
   data () {
@@ -42,16 +70,8 @@ export default {
       cep: '',
       listaProdutos: [],
       selected: '',
-      quantidadeOptions: [
-        {
-          label: '1',
-          value: '1'
-        },
-        {
-          label: '2',
-          value: '2'
-        }
-      ]
+      quantidadeOptions: [],
+      fretePrazoEntrega: {}
     }
   },
   created: function () {
@@ -62,8 +82,53 @@ export default {
       return (parseFloat(quantidade) * parseFloat(valorUnitario)) + parseFloat(frete)
     },
 
+    total () {
+      var total = 0
+      for (var i = 0; i < this.listaProdutos.length; i++) {
+        total = total + ((this.listaProdutos[i].quantidade * this.listaProdutos[i].valorUnitario) + this.listaProdutos[i].frete)
+      }
+      return total
+    },
+
     loadData () {
       this.listaProdutos = this.$q.localStorage.get.item('listaProdutosCarrinho')
+      this.loadQuantidadeOptions()
+    },
+
+    loadQuantidadeOptions () {
+      for (var i = 1; i <= 10; i++) {
+        var item = {}
+        item.label = i.toString()
+        item.value = i
+        this.quantidadeOptions.push(item)
+      }
+    },
+
+    calculaFretePrazoEntrega () {
+      var i = 0
+      for (i = 0; i < this.listaProdutos.length; i++) {
+        this.obterFretePrazoEntrega(i)
+        alert(i)
+        this.listaProdutos[i].frete = this.fretePrazoEntrega.valorFrete
+        this.listaProdutos[i].prazoEntrega = this.fretePrazoEntrega.prazoEntrega
+      }
+    },
+
+    obterFretePrazoEntrega (i) {
+      axios
+        .get('http://localhost:8081/api/v1/pedido/itempedido/obterfreteprazoentrega/' + this.listaProdutos[i].fornecedor.id + '/' + this.cep)
+        .then(response => {
+          this.fretePrazoEntrega = response.data
+        })
+        .catch(error => console.log(error))
+    },
+
+    excluirCarrinho (id) {
+      var index = this.listaProdutos.findIndex(v => v.id === id)
+      if (index > -1) {
+        this.listaProdutos.splice(index, 1)
+      }
+      this.$q.localStorage.set('listaProdutosCarrinho', this.listaProdutos)
     }
   }
 }
@@ -78,8 +143,38 @@ export default {
   max-width: 100px;
 }
 
-.row{
-  margin-top: 5px;
-  text-align: right;
+.componente{
+  margin-top: 20px;
+}
+
+.atributo{
+  color: grey;
+  font-size: 14px
+}
+
+.calculacep{
+  margin-left: 20px;
+}
+
+.subtotal{
+  color: grey;
+  font-weight: bold;
+  font-size: 15px
+}
+
+.total{
+  color: black;
+  font-weight: bold;
+}
+
+.imagem{
+  max-width: 70px;
+  max-height: 70px;
+}
+
+.item{
+ padding-bottom: .4em;
+ border-bottom: 1px solid #ddd;
+ margin: 2em 0 .1em;
 }
 </style>
