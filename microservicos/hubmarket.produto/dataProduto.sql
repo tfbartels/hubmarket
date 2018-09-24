@@ -84,16 +84,26 @@ INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compr
 	
 
 INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
-	VALUES (5, 1, 3, 2600, 2770, 2);	
+	VALUES (5, 1, 3, 2600, 2860, 2);	
 
 INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
-	VALUES (6, 2, 6, 2850, 3025, 2);
+	VALUES (6, 2, 6, 2850, 3135, 2);
 	
 INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
 	VALUES (7, 3, 10, 3000, 3300, 2);
 	
 INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
-	VALUES (8, 4, 8, 2700, 3100, 2);	
+	VALUES (8, 4, 8, 2700, 2970, 2);	
+	
+
+INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
+	VALUES (9, 1, 14, 3300, 3630, 3);	
+
+INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
+	VALUES (10, 2, 18, 3100, 3410, 3);
+	
+INSERT INTO public.produto_fornecedor(id, id_fornecedor, quantidade, valor_compra, valor_venda, id_produto)
+	VALUES (11, 3, 20, 3200, 3520, 3);
 	
 	
 --Avaliacoes

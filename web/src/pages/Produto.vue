@@ -110,7 +110,7 @@ export default {
           urlImagem: this.produto.urlImagem,
           descricao: this.produto.descricao,
           fornecedor: {
-            id: prodFornecSelec.id,
+            id: prodFornecSelec.fornecedor.id,
             nome: prodFornecSelec.fornecedor.nome
           },
           quantidade: 0,

@@ -29,8 +29,7 @@
           :options="quantidadeOptions"/>
         </div>
       </div>
-      <div class="col-12 col-md">
-      </div>
+      <div class="col-12 col-md"/>
       <div class="col-12 col-md">
         <div class="row">
          <q-btn label="Excluir" oultine color="red" size="sm" @click="excluirCarrinho(produto.id)"/>
@@ -71,7 +70,7 @@ export default {
       listaProdutos: [],
       selected: '',
       quantidadeOptions: [],
-      fretePrazoEntrega: {}
+      urlFretePrazoEntrega: []
     }
   },
   created: function () {
@@ -106,19 +105,20 @@ export default {
 
     calculaFretePrazoEntrega () {
       var i = 0
+      this.urlFretePrazoEntrega = []
       for (i = 0; i < this.listaProdutos.length; i++) {
         this.obterFretePrazoEntrega(i)
-        alert(i)
-        this.listaProdutos[i].frete = this.fretePrazoEntrega.valorFrete
-        this.listaProdutos[i].prazoEntrega = this.fretePrazoEntrega.prazoEntrega
+        // this.urlFretePrazoEntrega.push('http://localhost:8081/api/v1/pedido/itempedido/obterfreteprazoentrega/' + this.listaProdutos[i].fornecedor.id + '/' + this.cep)
       }
     },
 
     obterFretePrazoEntrega (i) {
+      // const self = this;
       axios
         .get('http://localhost:8081/api/v1/pedido/itempedido/obterfreteprazoentrega/' + this.listaProdutos[i].fornecedor.id + '/' + this.cep)
         .then(response => {
-          this.fretePrazoEntrega = response.data
+          this.listaProdutos[i].frete = response.data.valorFrete
+          this.listaProdutos[i].prazoEntrega = response.data.prazoEntrega
         })
         .catch(error => console.log(error))
     },
