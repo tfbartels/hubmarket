@@ -65,14 +65,6 @@ public class ProdutoController {
 		return produtoDTO;
 	}
 	
-/*	@GetMapping("/{id}")
-	public ProdutoEntity buscaPorId(@PathVariable Long id) {
-					
-		ProdutoEntity produtoEntity =  this.produtoRepository.findById(id).get();	
-		
-		return produtoEntity;
-	}
-		*/	
 	
 	@GetMapping("/listarpordescricao/{descricao}")
 	public List<ProdutoDTO> listarPorDescricao(@PathVariable String descricao) {

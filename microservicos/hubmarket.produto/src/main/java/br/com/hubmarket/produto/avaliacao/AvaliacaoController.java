@@ -22,7 +22,7 @@ public class AvaliacaoController {
 	@Autowired
 	protected AvaliacaoRepository avaliacaoRepository;
 	
-	@GetMapping("listarPorDataCriacao/{dataInicio}/{dataFim}")
+	@GetMapping("listarpordatacriacao/{dataInicio}/{dataFim}")
 	public List<AvaliacaoDTO>  listarPorDataCriacao(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy")  Date dataInicio, @PathVariable  @DateTimeFormat(pattern = "dd-MM-yyyy")  Date dataFim) {
 				
 		List<AvaliacaoEntity> listaAvaliacaoEntity =  this.avaliacaoRepository.findAllByDataCriacaoBetween(dataInicio, dataFim);

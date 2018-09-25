@@ -110,7 +110,6 @@ export default {
       this.urlFretePrazoEntrega = []
       for (i = 0; i < this.listaProdutos.length; i++) {
         this.obterFretePrazoEntrega(i)
-        // this.urlFretePrazoEntrega.push('http://localhost:8081/api/v1/pedido/itempedido/obterfreteprazoentrega/' + this.listaProdutos[i].fornecedor.id + '/' + this.cep)
       }
     },
 
