@@ -71,8 +71,7 @@ export default {
       cep: '',
       listaProdutos: [],
       selected: '',
-      quantidadeOptions: [],
-      urlFretePrazoEntrega: []
+      quantidadeOptions: []
     }
   },
   created: function () {
@@ -106,9 +105,7 @@ export default {
     },
 
     calculaFretePrazoEntrega () {
-      var i = 0
-      this.urlFretePrazoEntrega = []
-      for (i = 0; i < this.listaProdutos.length; i++) {
+      for (var i = 0; i < this.listaProdutos.length; i++) {
         this.obterFretePrazoEntrega(i)
       }
     },
