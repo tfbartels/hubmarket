@@ -6,7 +6,7 @@ Este projeto é uma Prova de Conceito desenvolvida no trabalho de conclusão de 
 
 ### Download
 
-Faça o clone deste projeto com 
+Faça o clone deste projeto com: 
 ```
 git clone https://github.com/tfbartels/hubmarket.git
 ```

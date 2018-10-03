@@ -28,7 +28,7 @@ As demais instruções serão dadas baseada nesta ferramenta.
 Run As > Maven Build
 ```
 
-2. Em Run Configuratins insira no campo Goals
+2. Em Run Configurations insira no campo Goals:
 ```
 spring-boot:run
 ```
@@ -40,7 +40,7 @@ spring-boot:run
 Run As > Maven Install
 ```
 
-Será gerado um arquivo .jar com servidor autocontido, que poderá ser executado através do prompt de comandos.
+Será gerado um arquivo .jar, com servidor autocontido, que poderá ser executado através do prompt de comandos.
 
 
 ## Autores
