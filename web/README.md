@@ -2,12 +2,13 @@
 
 ## Iniciando
 
+Módulo Web do projeto Hub Market, responsável pelo front-end da aplicação. 
 
 ### Pré-requisitos
 
 ```
-NodeJs versão >= 8.9.0
-NPM versão >= 5.6.0
+NodeJs - versão >= 8.9.0
+NPM - versão >= 5.6.0
 Git
 Quasar
 VueJs
@@ -30,6 +31,7 @@ A aplicação estará disponivel na URL http://localhost:8080
 
 ## Deploy
 
+Para realizar o deploy da aplicação execute o comando:
 ```
 npm run-script build
 ```
